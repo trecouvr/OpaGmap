@@ -15,7 +15,7 @@
     if (typeof maps == "undefined") {
 	maps = {};
     }
-
+    
     maps[id_map] = map;
     
     return id_map;
@@ -34,26 +34,23 @@
 	draggable: draggable
     });
     
-    if (typeof markers == "undefined")
+    if (typeof markers == "undefined") {
 	markers = [];
+    }
     
-    if (typeof markers[id_map] == "undefined")
-	markers[id_map] = [];
-    
-    var id = markers[id_map].push(marker) - 1;
+    var id = markers.push(marker) - 1;
 
-    return id;
+    return id.toString();
 }
 
-##register add_listener : string,(float,float,float,float -> void),string,string -> string
+##register add_listener : string,(float,float,float,float -> void),string,string -> void
 ##args(eventname, callback, id_marker, id_map)
 {
-    var marker = markers[id_map][id_marker];
+    var marker = markers[id_marker];
     var listener = google.maps.event.addListener(
 	marker, 
 	eventname, 
 	function(e) {
 	    callback(e.latLng.Pa, e.latLng.Qa, e.pixel.x, e.pixel.y);});
     
-    return listener;
 }

@@ -4,7 +4,8 @@ import gmap
 
 
 @client
-callback(lat,lng,x,y) = jlog("{lat} {lng} {x} {y}")
+callback(lat,lng,_x,_y) =
+    Dom.transform([#lat <- <>{lat}</>, #lng <- <>{lng}</>])
 
 main() = 
     conf = {
@@ -23,9 +24,9 @@ main() =
             }]
         }]
     }
-    /*<div id=#test onready={_-> Dom.transform([#test <-
-    Gmap.xhtml(conf)])}></div>*/
-    Gmap.xhtml(conf)
+    map = Gmap.xhtml(conf)
+    <div>latitude : <span id=#lat></span><br/>longitude : <span id=#lng></span></div>
+    <div>{map}</div>
 
 server = Server.simple_dispatch(| {~path ...} -> Resource.full_page(
        "Gmap", 

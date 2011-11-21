@@ -80,12 +80,12 @@ Gmap = {{
             id_map = map
             id = add_marker_client(conf.position.lat, conf.position.lng, conf.title, conf.draggable, map)
         }
-        do List.iter(conf_listener -> _ = add_listener(conf_listener, marker) void, conf.listeners)
+        do List.iter(conf_listener -> do add_listener(conf_listener, marker) void, conf.listeners)
         marker
     
     
     @client
-    add_listener(conf : Gmap.Listener.config, marker : Gmap.marker) : string =
+    add_listener(conf : Gmap.Listener.config, marker : Gmap.marker) : void =
         add_listener_client(conf.eventname, conf.callback, marker.id, marker.id_map)
     
 }}
