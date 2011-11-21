@@ -8,6 +8,7 @@ callback(lat,lng,_x,_y) =
     Dom.transform([#lat <- <>{lat}</>, #lng <- <>{lng}</>])
 
 main() = 
+    do Gmap.init()
     conf = {
         map={
             id = "map_canvas"
@@ -31,7 +32,6 @@ main() =
 server = Server.simple_dispatch(| {~path ...} -> Resource.full_page(
        "Gmap", 
        main(), 
-       <script src="http://maps.googleapis.com/maps/api/js?sensor=false"/>
        <style type="text/css">
            html, body \{
            margin: 0;
