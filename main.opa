@@ -29,14 +29,4 @@ main() =
     <div>latitude : <span id=#lat></span><br/>longitude : <span id=#lng></span></div>
     <div>{map}</div>
 
-server = Server.simple_dispatch(| {~path ...} -> Resource.full_page(
-       "Gmap", 
-       main(), 
-       <style type="text/css">
-           html, body \{
-           margin: 0;
-           padding: 0;
-           height: 100%;
-           }
-       </style>, 
-       {success}, []))
+server = Server.one_page_server("Gmap", main)
