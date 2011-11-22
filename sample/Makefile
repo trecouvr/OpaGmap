@@ -3,12 +3,12 @@ OPA=opa
 OPA_PLUGIN_BUILDER=opa-plugin-builder
 EXE=main.exe
 
-all : plugin opa
+all : gmap.opp opa
 
-gmap.opp: plugin/gmap.js
+gmap.opp: ../plugin/gmap.js
 	$(OPA_PLUGIN_BUILDER) $^ -o $@
 
-gmap.opx: gmap.opp plugin/gmap.opa
+gmap.opx: gmap.opp ../plugin/gmap.opa
 	$(OPA) $^ --no-server --autocompile
 
 opa:	gmap.opx main.opa
