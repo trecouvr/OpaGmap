@@ -86,14 +86,14 @@ Gmap = {{
     /**
     Load google api.
     */
-    load_api() =
-        Resource.register_external_js("http://maps.googleapis.com/maps/api/js?sensor=false")
+    load_api(api_key : string) : void =
+        Resource.register_external_js("http://maps.googleapis.com/maps/api/js?key={api_key}&sensor=false")
     
     /**
     Unload google api.
     */
     unload_api() =
-        Resource.unregister_external_js("http://maps.googleapis.com/maps/api/js?sensor=false")
+        Resource.unregister_external_js("http://maps.googleapis.com/maps/api/js")
     
     @private
     to_js(o) = Json.serialize(OpaSerialize.Json.serialize(o))
