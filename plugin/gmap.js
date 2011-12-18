@@ -51,6 +51,6 @@
 	marker, 
 	eventname, 
 	function(e) {
-	    callback(e.latLng.Pa, e.latLng.Qa, e.pixel.x, e.pixel.y);});
+	    callback(e.latLng.lat(), e.latLng.lng(), e.pixel.x, e.pixel.y);});
     
 }
