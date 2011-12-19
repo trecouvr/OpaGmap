@@ -55,6 +55,6 @@ function Gmap_add_listener (eventname, callback, id_marker, id_map)
 	marker, 
 	eventname, 
 	function(e) {
-	    callback(e.latLng.Pa, e.latLng.Qa, e.pixel.x, e.pixel.y);});
+	    callback(e.latLng.lat(), e.latLng.lng(), e.pixel.x, e.pixel.y);});
     
 }

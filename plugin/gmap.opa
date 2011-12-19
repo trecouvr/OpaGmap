@@ -83,17 +83,25 @@ type Gmap.config = {
 
 Gmap = {{
     
+    @private
+    api_key = ServerReference.create("") : reference(string)
+    
+    compute_url(api_key : string) : string =
+        "http://maps.googleapis.com/maps/api/js?key={api_key}&sensor=false"
+    
     /**
     Load google api.
     */
-    load_api(api_key : string) : void =
-        Resource.register_external_js("http://maps.googleapis.com/maps/api/js?key={api_key}&sensor=false")
+    load_api(key : string) : void =
+        do unload_api()
+        do Reference.set(api_key, key)
+        Resource.register_external_js(compute_url(key))
     
     /**
     Unload google api.
     */
     unload_api() =
-        Resource.unregister_external_js("http://maps.googleapis.com/maps/api/js")
+        Resource.unregister_external_js(compute_url(Reference.get(api_key)))
     
     @private
     to_js(o) = Json.serialize(OpaSerialize.Json.serialize(o))

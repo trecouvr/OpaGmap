@@ -8,7 +8,8 @@ callback(lat,lng,_x,_y) =
     Dom.transform([#lat <- <>{lat}</>, #lng <- <>{lng}</>])
 
 main() = 
-    do Gmap.load_api()
+    do Gmap.load_api("")
+    //do Gmap.unload_api()
     conf = {
         map={
             id = "map_canvas"
